@@ -180,7 +180,7 @@ plt.xticks(agri.index[::3])
 plt.show()
 
 
-#Reading agriculture value added to % of GDP land data and creating its transpose
+#Reading agri value added to % GDP land and creating its transpose
 agri_GDP = read_df('Agriculture value added (% of GDP).csv')
 agri_GDP, agri_GDP_tr = transposing_dfs(agri_GDP)
 
@@ -214,7 +214,7 @@ print(rural.describe())
 
 #Values are plotted in Millions
 for i in rural.columns:
-    urban[i] = rural[i]/1000000
+    rural[i] = rural[i]/1000000
 
 
 #Plotting Rural Population data variation of my countries in given years
@@ -283,11 +283,11 @@ def correlation_heatmap(country_data, country, color):
 
 # indicators names lists and its dataframes to create country
 #specific data for further analysis
-indicators = ['Agriculture GDP','Forest Area', 'Urban Population', 
+indicators = ['Agriculture GDP','Forest Area', 'Rural Population', 
               'Agriculture Land', 'Permanent cropland']
 
-dataframes = [agri_GDP,forest_area, urban_pop, agri_land, crop_land]
-dataframes_tr = [forest_area_tr, urban_pop_tr, agri_land_tr, crop_land_tr]
+dataframes = [agri_GDP,forest_area, rural_pop, agri_land, crop_land]
+dataframes_tr = [forest_area_tr, rural_pop_tr, agri_land_tr, crop_land_tr]
 
 
 #Creating India dataframe and plotting its heatmap
@@ -305,7 +305,8 @@ correlation_heatmap(china, 'CHINA', 'rainbow')
 
 forgroupby = read_df('Fertilizer consumption.csv')
 
-new_df = forgroupby[['Country Name', 'Indicator Name', '2010', '2011', '2012', '2013', '2014', '2015']]
+new_df = forgroupby[['Country Name', 'Indicator Name', '2010', '2011', '2012', 
+                     '2013', '2014', '2015']]
 
 #by country name, calculate the mean and mediab of each year's values
 grouped_by_countries_mean = new_df.groupby('Country Name').mean()
