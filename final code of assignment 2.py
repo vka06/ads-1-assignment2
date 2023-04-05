@@ -29,7 +29,9 @@ def read_df(filepath):
     '''
 
   
-    df = pd.read_csv(filepath, skiprows=(4))
+    df = pd.read_csv(filepath, skiprows = (4))
+    
+    df.head()
 
     return df
 
@@ -296,3 +298,20 @@ correlation_heatmap(india, 'INDIA', 'PiYG')
 #Creating China dataframe and plotting its heatmap
 china = country(dataframes_tr, indicators, 'China')
 correlation_heatmap(china, 'CHINA', 'rainbow')
+
+
+
+#used datatframe method groupby()
+
+forgroupby = read_df('Fertilizer consumption.csv')
+
+new_df = forgroupby[['Country Name', 'Indicator Name', '2010', '2011', '2012', '2013', '2014', '2015']]
+
+#by country name, calculate the mean and mediab of each year's values
+grouped_by_countries_mean = new_df.groupby('Country Name').mean()
+grouped_by_countries_median = new_df.groupby('Country Name').median()
+
+# resulting DataFrame
+print(grouped_by_countries_mean)
+print(grouped_by_countries_median)
+
