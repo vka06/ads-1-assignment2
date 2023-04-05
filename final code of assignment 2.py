@@ -317,3 +317,20 @@ grouped_by_countries_median = new_df.groupby('Country Name').median()
 print(grouped_by_countries_mean)
 print(grouped_by_countries_median)
 
+
+
+#for statistical functions
+
+#finding skewness
+skewness=[]
+kurtness=[]
+for i in agri_GDP.columns:
+    skewness.append(agri_GDP[i].skew())
+    kurtness.append(agri_GDP[i].kurtosis())
+    
+agri_GDP_sk_kurt = pd.DataFrame()
+agri_GDP_sk_kurt.index = agri_GDP.columns
+agri_GDP_sk_kurt['Skewness'] = skwness
+agri_GDP_sk_kurt['Skewness'] = kurtness
+
+print(agri_GDP_sk_kurt)
